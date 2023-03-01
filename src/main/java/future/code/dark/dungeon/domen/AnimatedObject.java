@@ -12,7 +12,7 @@ import static future.code.dark.dungeon.config.Configuration.SPRITE_SIZE;
 public abstract class AnimatedObject extends GameObject implements ActionListener {
 
     ArrayList<Image> images = new ArrayList<>();
-    int spriteNum=0;
+    int spriteNum=(int)Math.random()*3;
     int frameCounter=0;
     public boolean isRight = true;
 
