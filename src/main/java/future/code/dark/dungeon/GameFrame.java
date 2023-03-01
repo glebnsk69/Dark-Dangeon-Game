@@ -24,6 +24,7 @@ public class GameFrame extends JPanel implements ActionListener {
         frame.setSize(gameMaster.getMap().getWidth() * SPRITE_SIZE, gameMaster.getMap().getHeight() * SPRITE_SIZE);
         frame.setLocationRelativeTo(null);
         timer.start();
+        System.out.println("GameFrame(JFrame frame)");
         frame.addKeyListener(new MovementController(gameMaster.getPlayer()));
     }
 
