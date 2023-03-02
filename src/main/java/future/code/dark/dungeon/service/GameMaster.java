@@ -71,7 +71,9 @@ public class GameMaster {
         getEnemies().forEach(gameObject -> gameObject.render(graphics));
         getPlayer().render(graphics);
         graphics.setColor(Color.WHITE);
-        graphics.drawString(getPlayer().toString(), 10, 20);
+        graphics.drawString(getPlayer().toString(), 10, 20); //Отображение позиции героя
+        graphics.drawString("Coins:"+getPlayer().getCoins()+"/9",10,40);
+
     }
 
     public Player getPlayer() {
