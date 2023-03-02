@@ -73,6 +73,14 @@ public class GameMaster {
         graphics.setColor(Color.WHITE);
         graphics.drawString(getPlayer().toString(), 10, 20); //Отображение позиции героя
         graphics.drawString("Coins:"+getPlayer().getCoins()+"/9",10,40);
+        this.gameObjects.forEach(gameObjects-> {
+            if(gameObjects instanceof Coin c && !c.isCollected()) {
+                if(c.getXPosition()==getPlayer().getXPosition() && c.getYPosition()==getPlayer().getYPosition()) {
+                    getPlayer().addCoin(1);
+                    c.setCollected(true);
+                }
+            }
+        });
 
     }
 

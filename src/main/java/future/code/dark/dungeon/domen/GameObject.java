@@ -18,7 +18,9 @@ public abstract class GameObject {
 
         this.image = new ImageIcon(imagePath).getImage();
     }
-
+    public Image getImage(){
+        return image;
+    }
     public int getXPosition() {
         return xPosition;
     }
