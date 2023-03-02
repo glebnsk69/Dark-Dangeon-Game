@@ -1,11 +1,13 @@
 package future.code.dark.dungeon.domen;
 
+import future.code.dark.dungeon.service.GameMaster;
 import future.code.dark.dungeon.util.FileUtils;
 
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collector;
 
@@ -123,4 +125,15 @@ public class Map {
         return map;
     }
 
+    @Override
+    public String toString() {
+        String tmp="";
+        for(int i=0;i<map[0].length;i++) {
+            for (int j = 0; j < map.length; j++) {
+                tmp += " "+map[j][i];
+            }
+            tmp+="\n";
+        }
+        return  tmp;
+    }
 }

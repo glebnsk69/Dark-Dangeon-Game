@@ -16,10 +16,12 @@ public interface Configuration {
 //    String PLAYER_SPRITE = "src/main/resources/assets/hero/tile000.png";
 String PLAYER_SPRITE = "src/main/resources/assets/hero/";
 //    String GHOST_SPRITE = "src/main/resources/assets/ghost/tile000.png";
-String GHOST_SPRITE = "src/main/resources/assets/ghost/";
+    String GHOST_SPRITE = "src/main/resources/assets/ghost/";
+    String DIGIT_PATH = "src/main/resources/assets/tdigit/";
     String WALL_SPRITE = "src/main/resources/assets/land/wall.png";
     String LAND_SPRITE = "src/main/resources/assets/land/ground.png";
     String EXIT_SPRITE = "src/main/resources/assets/land/out.png";
     String COIN_SPRITE = "src/main/resources/assets/land/collectible.png";
+    int MAX_COIN = 9;
 
 }

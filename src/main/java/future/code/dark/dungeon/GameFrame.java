@@ -6,7 +6,7 @@ import future.code.dark.dungeon.service.GameMaster;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,8 +20,15 @@ public class GameFrame extends JPanel implements ActionListener {
     public GameFrame(JFrame frame) {
         Timer timer = new Timer(GAME_FRAMES_PER_SECOND, this);
         this.gameMaster = GameMaster.getInstance();
-
-        frame.setSize(gameMaster.getMap().getWidth() * SPRITE_SIZE, gameMaster.getMap().getHeight() * SPRITE_SIZE);
+        Dimension dim = new Dimension(gameMaster.getMap().getWidth() * SPRITE_SIZE,gameMaster.getMap().getHeight() * SPRITE_SIZE);
+        frame.setPreferredSize(dim);
+        frame.pack();
+        int dx = dim.width-frame.getContentPane().getWidth();
+        int dy = dim.height-frame.getContentPane().getHeight();
+        dim.width+=dx;
+        dim.height+=dy;
+        frame.setPreferredSize(dim);
+        frame.pack();
         frame.setLocationRelativeTo(null);
         timer.start();
         System.out.println("GameFrame(JFrame frame)");

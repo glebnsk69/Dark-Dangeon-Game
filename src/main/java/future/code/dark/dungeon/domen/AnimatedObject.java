@@ -18,7 +18,6 @@ public abstract class AnimatedObject extends GameObject implements ActionListene
 
     public AnimatedObject(int xPosition, int yPosition, String imagePath) {
         super(xPosition, yPosition, imagePath);
-        System.out.println(imagePath);
         images.add(new ImageIcon(imagePath+"tile000.png").getImage());
         images.add(new ImageIcon(imagePath+"tile001.png").getImage());
         images.add(new ImageIcon(imagePath+"tile002.png").getImage());
@@ -28,11 +27,13 @@ public abstract class AnimatedObject extends GameObject implements ActionListene
     @Override
     public void render(Graphics graphics) {
 //        super.render(graphics);
-        if(spriteNum>3)spriteNum=0;
+        if(spriteNum>=3)spriteNum=0;
         if(isRight) graphics.drawImage(images.get(spriteNum), xPosition * SPRITE_SIZE, yPosition  * SPRITE_SIZE, null);
         else graphics.drawImage(images.get(spriteNum),xPosition * SPRITE_SIZE, yPosition  * SPRITE_SIZE, xPosition * SPRITE_SIZE+SPRITE_SIZE, yPosition  * SPRITE_SIZE+SPRITE_SIZE,SPRITE_SIZE, 0, 0, SPRITE_SIZE, null);
-        if(frameCounter%10==0) {spriteNum++;frameCounter=0;}
+        if(frameCounter%10==0) spriteNum++;
+        if(frameCounter>Integer.MAX_VALUE-1) frameCounter = 0;
         frameCounter++;
+
     }
 
     @Override

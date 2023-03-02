@@ -1,13 +1,7 @@
 package future.code.dark.dungeon.service;
 
 import future.code.dark.dungeon.config.Configuration;
-import future.code.dark.dungeon.domen.Coin;
-import future.code.dark.dungeon.domen.DynamicObject;
-import future.code.dark.dungeon.domen.Enemy;
-import future.code.dark.dungeon.domen.Exit;
-import future.code.dark.dungeon.domen.GameObject;
-import future.code.dark.dungeon.domen.Map;
-import future.code.dark.dungeon.domen.Player;
+import future.code.dark.dungeon.domen.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -29,6 +23,8 @@ public class GameMaster {
 
     private final Map map;
     private final List<GameObject> gameObjects;
+    private Digit digit;
+
 
     public static synchronized GameMaster getInstance() {
         if (instance == null) {
@@ -41,6 +37,9 @@ public class GameMaster {
         try {
             this.map = new Map(Configuration.MAP_FILE_PATH);
             this.gameObjects = initGameObjects(map.getMap());
+            this.digit = new Digit(2,0,Configuration.DIGIT_PATH);
+            this.digit.setDigit(0);
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -67,13 +66,26 @@ public class GameMaster {
 
     public void renderFrame(Graphics graphics) {
         getMap().render(graphics);
-        getStaticObjects().forEach(gameObject -> gameObject.render(graphics));
-        getEnemies().forEach(gameObject -> gameObject.render(graphics));
-        getPlayer().render(graphics);
         graphics.setColor(Color.WHITE);
         graphics.drawString(getPlayer().toString(), 10, 20); //Отображение позиции героя
         graphics.drawString("Coins:"+getPlayer().getCoins()+"/9",10,40);
-        this.gameObjects.forEach(gameObjects-> {
+
+
+        getStaticObjects().forEach(gameObject -> gameObject.render(graphics));
+        getEnemies().forEach(gameObject -> {
+            gameObject.isRight = gameObject.getXPosition()> getPlayer().getXPosition();
+            gameObject.render(graphics);
+        });
+        getPlayer().render(graphics);
+        if(getPlayer().isWon()){
+
+            return;
+        }
+        if(getPlayer().isDead()) {
+
+          return;
+        }
+        this.getStaticObjects().forEach(gameObjects-> {
             if(gameObjects instanceof Coin c && !c.isCollected()) {
                 if(c.getXPosition()==getPlayer().getXPosition() && c.getYPosition()==getPlayer().getYPosition()) {
                     getPlayer().addCoin(1);
@@ -81,6 +93,8 @@ public class GameMaster {
                 }
             }
         });
+        digit.setDigit(getPlayer().getCoins());
+        digit.render(graphics);
 
     }
 
