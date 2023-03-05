@@ -3,7 +3,7 @@ package future.code.dark.dungeon.config;
 public interface Configuration {
 
     String GAME_NAME="Dark Dungeon";
-    String MAP_FILE_PATH = "src/main/resources/maps/map.ber";
+    String MAP_FILE_PATH = "src/main/resources/maps/map2.ber";
     Boolean ENEMIES_ACTIVE = true;
     int GAME_FRAMES_PER_SECOND = 25;
     char WALL_CHARACTER = '1';
@@ -12,7 +12,7 @@ public interface Configuration {
     char PLAYER_CHARACTER = 'P';
     char ENEMY_CHARACTER = 'G';
     char COIN_CHARACTER = 'C';
-    Integer SPRITE_SIZE = 64;
+    Integer SPRITE_SIZE = 32;//64;
 //    String PLAYER_SPRITE = "src/main/resources/assets/hero/tile000.png";
 String PLAYER_SPRITE = "src/main/resources/assets/hero/";
 //    String GHOST_SPRITE = "src/main/resources/assets/ghost/tile000.png";

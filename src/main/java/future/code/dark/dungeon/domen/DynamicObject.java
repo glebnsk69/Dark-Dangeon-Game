@@ -43,7 +43,7 @@ public abstract class DynamicObject extends AnimatedObject {
 
     }
 
-    private Boolean isAllowedSurface(int x, int y) {
+    public Boolean isAllowedSurface(int x, int y) {
         return GameMaster.getInstance().getMap().getMap()[y][x] != Configuration.WALL_CHARACTER;
     }
 

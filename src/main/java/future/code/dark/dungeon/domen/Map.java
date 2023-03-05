@@ -1,5 +1,6 @@
 package future.code.dark.dungeon.domen;
 
+import future.code.dark.dungeon.config.Configuration;
 import future.code.dark.dungeon.service.GameMaster;
 import future.code.dark.dungeon.util.FileUtils;
 
@@ -21,9 +22,9 @@ import static future.code.dark.dungeon.config.Configuration.WALL_SPRITE;
 
 public class Map {
 
-    private static final Image wallImage = new ImageIcon(WALL_SPRITE).getImage();
-    private static final Image landImage = new ImageIcon(LAND_SPRITE).getImage();
-    private static final Image exitImage = new ImageIcon(EXIT_SPRITE).getImage();
+    private static final Image wallImage = new ImageIcon(WALL_SPRITE).getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0);
+    private static final Image landImage = new ImageIcon(LAND_SPRITE).getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0);
+    private static final Image exitImage = new ImageIcon(EXIT_SPRITE).getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0);
     private final char[][] map;
 
     public Map(String mapPath) throws FileNotFoundException {

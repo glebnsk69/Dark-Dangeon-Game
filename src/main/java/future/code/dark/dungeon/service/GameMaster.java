@@ -26,6 +26,7 @@ public class GameMaster {
     private Digit digit;
 
 
+
     public static synchronized GameMaster getInstance() {
         if (instance == null) {
             instance = new GameMaster();
@@ -37,8 +38,9 @@ public class GameMaster {
         try {
             this.map = new Map(Configuration.MAP_FILE_PATH);
             this.gameObjects = initGameObjects(map.getMap());
-            this.digit = new Digit(2,0,Configuration.DIGIT_PATH);
+            this.digit = new Digit(17,0,Configuration.DIGIT_PATH);
             this.digit.setDigit(0);
+
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -75,12 +77,26 @@ public class GameMaster {
         getEnemies().forEach(gameObject -> {
             gameObject.isRight = gameObject.getXPosition()> getPlayer().getXPosition();
             gameObject.render(graphics);
+            if(gameObject.frameCounter%30==0) {  // движение врагов
+                if (gameObject.getXPosition() > getPlayer().getXPosition())
+                    gameObject.move(DynamicObject.Direction.LEFT, 1);
+                else gameObject.move(DynamicObject.Direction.RIGHT, 1);
+                if (gameObject.getYPosition() > getPlayer().getYPosition())
+                    gameObject.move(DynamicObject.Direction.UP, 1);
+                else gameObject.move(DynamicObject.Direction.DOWN, 1);
+            }
+
         });
         getPlayer().render(graphics);
-        if(getPlayer().isWon()){
+        digit.setDigit(getPlayer().getCoins());
+        digit.render(graphics);
 
+        if(getPlayer().isWon()){
+            digit.setDigit(11);
+            System.out.println("Victory!!!");
             return;
         }
+
         if(getPlayer().isDead()) {
 
           return;
@@ -92,9 +108,9 @@ public class GameMaster {
                     c.setCollected(true);
                 }
             }
+
         });
-        digit.setDigit(getPlayer().getCoins());
-        digit.render(graphics);
+
 
     }
 

@@ -23,10 +23,8 @@ public class GameFrame extends JPanel implements ActionListener {
         Dimension dim = new Dimension(gameMaster.getMap().getWidth() * SPRITE_SIZE,gameMaster.getMap().getHeight() * SPRITE_SIZE);
         frame.setPreferredSize(dim);
         frame.pack();
-        int dx = dim.width-frame.getContentPane().getWidth();
-        int dy = dim.height-frame.getContentPane().getHeight();
-        dim.width+=dx;
-        dim.height+=dy;
+        dim.width+=dim.width-frame.getContentPane().getWidth();
+        dim.height+=dim.height-frame.getContentPane().getHeight();
         frame.setPreferredSize(dim);
         frame.pack();
         frame.setLocationRelativeTo(null);

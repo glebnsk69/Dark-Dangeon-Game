@@ -13,15 +13,17 @@ public abstract class AnimatedObject extends GameObject implements ActionListene
 
     ArrayList<Image> images = new ArrayList<>();
     int spriteNum=(int)(Math.random()*3f);
-    int frameCounter=0;
+    public int frameCounter=0;
     public boolean isRight = true;
 
     public AnimatedObject(int xPosition, int yPosition, String imagePath) {
         super(xPosition, yPosition, imagePath);
-        images.add(new ImageIcon(imagePath+"tile000.png").getImage());
-        images.add(new ImageIcon(imagePath+"tile001.png").getImage());
-        images.add(new ImageIcon(imagePath+"tile002.png").getImage());
-        images.add(new ImageIcon(imagePath+"tile003.png").getImage());
+
+
+        images.add(new ImageIcon(imagePath+"tile000.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
+        images.add(new ImageIcon(imagePath+"tile001.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
+        images.add(new ImageIcon(imagePath+"tile002.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
+        images.add(new ImageIcon(imagePath+"tile003.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
     }
 
     @Override
@@ -33,7 +35,6 @@ public abstract class AnimatedObject extends GameObject implements ActionListene
         if(frameCounter%10==0) spriteNum++;
         if(frameCounter>Integer.MAX_VALUE-1) frameCounter = 0;
         frameCounter++;
-
     }
 
     @Override

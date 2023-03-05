@@ -16,7 +16,7 @@ public abstract class GameObject {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
 
-        this.image = new ImageIcon(imagePath).getImage();
+        this.image = new ImageIcon(imagePath).getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0);
     }
     public Image getImage(){
         return image;

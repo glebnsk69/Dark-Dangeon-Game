@@ -26,7 +26,7 @@ public class Player extends DynamicObject {
     }
     public void addCoin(int coin){
         this.coins += coin;
-        if(this.coins == 9 ) won();
+        if(this.coins == Configuration.MAX_COIN ) won();
     }
 
     public boolean isWon(){ return won;}

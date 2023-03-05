@@ -9,14 +9,12 @@ public class Enemy extends DynamicObject{
     public Enemy(int xPosition, int yPosition) {
         super(xPosition, yPosition, Configuration.GHOST_SPRITE);
     }
-    /*
-    @Override
-    public void render(Graphics graphics) {
-        super.render(graphics);
-        if(frameCounter%32 ==0 ) {
-           isRight = Math.random()<0.5;
-        }
+    public double getDistance(int x,int y){
+        return Math.sqrt(((x-xPosition)*(x-xPosition)+(y-yPosition)*(y-yPosition)));
     }
 
-     */
+    @Override
+    public void move(Direction direction, int distance) {
+        super.move(direction, distance);
+    }
 }

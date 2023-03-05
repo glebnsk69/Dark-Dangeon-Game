@@ -14,12 +14,18 @@ public class Digit extends GameObject{
 
     public Digit(int xPosition, int yPosition, String imagePath) {
         super(xPosition, yPosition, imagePath);
-        for (int i = 0; i < 10; i++) {
-            images.add(new ImageIcon(imagePath+i+".png").getImage());
+        for (int i = 0; i < 11; i++) {
+            images.add(new ImageIcon(imagePath+i+".png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
         }
 
     }
-public void setDigit(int digit){this.currentDigit= Configuration.MAX_COIN;}
+public void setDigit(int digit){
+        if(digit<11) this.currentDigit = digit;
+        else {this.currentDigit = 10;
+            System.out.println("===>"+currentDigit);
+        }
+
+    }//Configuration.MAX_COIN;}
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(images.get(currentDigit), xPosition * SPRITE_SIZE, yPosition  * SPRITE_SIZE, null);
