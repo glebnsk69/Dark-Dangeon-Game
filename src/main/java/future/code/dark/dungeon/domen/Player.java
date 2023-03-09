@@ -24,6 +24,7 @@ public class Player extends DynamicObject {
     public int getCoins(){
         return coins;
     }
+
     public void addCoin(int coin){
         this.coins += coin;
         if(this.coins == Configuration.MAX_COIN ) won();
@@ -36,4 +37,6 @@ public class Player extends DynamicObject {
     }
     public boolean isDead(){return dead;}
     public void dead() {dead = true;}
+
+
 }

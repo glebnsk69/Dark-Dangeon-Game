@@ -18,8 +18,6 @@ public abstract class AnimatedObject extends GameObject implements ActionListene
 
     public AnimatedObject(int xPosition, int yPosition, String imagePath) {
         super(xPosition, yPosition, imagePath);
-
-
         images.add(new ImageIcon(imagePath+"tile000.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
         images.add(new ImageIcon(imagePath+"tile001.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
         images.add(new ImageIcon(imagePath+"tile002.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));

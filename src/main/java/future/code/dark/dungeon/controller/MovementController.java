@@ -25,6 +25,7 @@ public class MovementController extends KeyAdapter {
             case KeyEvent.VK_S,KeyEvent.VK_DOWN -> player.move(DOWN);
             case KeyEvent.VK_A,KeyEvent.VK_LEFT -> {player.move(LEFT); player.isRight = false;}
             case KeyEvent.VK_D,KeyEvent.VK_RIGHT -> {player.move(RIGHT);player.isRight=true;}
+//            case KeyEvent.VK_SPACE -> {player.newGame();}
         }
     }
 

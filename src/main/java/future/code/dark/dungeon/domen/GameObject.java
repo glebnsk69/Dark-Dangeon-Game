@@ -15,7 +15,6 @@ public abstract class GameObject {
     public GameObject(int xPosition, int yPosition, String imagePath) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-
         this.image = new ImageIcon(imagePath).getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0);
     }
     public Image getImage(){
@@ -24,11 +23,9 @@ public abstract class GameObject {
     public int getXPosition() {
         return xPosition;
     }
-
     public int getYPosition() {
         return yPosition;
     }
-
     public void render(Graphics graphics) {
         graphics.drawImage(image, xPosition * SPRITE_SIZE, yPosition  * SPRITE_SIZE, null);
     }

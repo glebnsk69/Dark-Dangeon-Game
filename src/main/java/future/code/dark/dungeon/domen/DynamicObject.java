@@ -29,23 +29,14 @@ public abstract class DynamicObject extends AnimatedObject {
             yPosition = tmpYPosition;
         }
 
-        //System.out.println("x="+tmpXPosition+" y="+ tmpYPosition+"==>"+GameMaster.getInstance().getMap().toString());
-//        System.out.println(GameMaster.getInstance().getMap().getMap()[tmpYPosition][tmpXPosition]);
-
-
-        if((GameMaster.getInstance().getMap()).getMap()[tmpYPosition][tmpXPosition]==Configuration.EXIT_CHARACTER) {
-            if(this instanceof Player p) {
-                if(p.isWon()) System.out.println("Exit!!!");
-            }
-        }
-
-
-
     }
 
     public Boolean isAllowedSurface(int x, int y) {
+        if(GameMaster.getInstance().getMap().getMap()[y][x] == Configuration.EXIT_CHARACTER)
+            if(GameMaster.getInstance().getExit().isClosed()) return false;
         return GameMaster.getInstance().getMap().getMap()[y][x] != Configuration.WALL_CHARACTER;
     }
+
 
 
 }

@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static future.code.dark.dungeon.config.Configuration.EXIT_CHARACTER;
 import static future.code.dark.dungeon.config.Configuration.EXIT_SPRITE;
@@ -21,7 +22,7 @@ import static future.code.dark.dungeon.config.Configuration.WALL_CHARACTER;
 import static future.code.dark.dungeon.config.Configuration.WALL_SPRITE;
 
 public class Map {
-
+    private int coinCount=0;
     private static final Image wallImage = new ImageIcon(WALL_SPRITE).getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0);
     private static final Image landImage = new ImageIcon(LAND_SPRITE).getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0);
     private static final Image exitImage = new ImageIcon(EXIT_SPRITE).getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0);
@@ -35,15 +36,28 @@ public class Map {
         }
 
         this.map = createMap(lines);
+        coinCount(lines);
 
+    }
+
+    public int getCoinCount() {
+        return coinCount;
+    }
+
+    public void coinCount(List<String> lines){
+        String str="";
+        for (int i=0;i<lines.size();i++){
+            str+=lines.get(i).toString();
+        }
+        coinCount=(int)str.chars().filter(value -> value=='C').count();
     }
 
     private char[][] createMap(List<String> lines) {
         char[][] map = new char[lines.size()][lines.get(0).length()];
         int rowNumber = 0;
-
         for (String line : lines) {
             map[rowNumber++] = line.toCharArray();
+            //System.out.println("==>"+rowNumber);
         }
 
         return map;

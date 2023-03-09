@@ -1,0 +1,292 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "future.code.dark.dungeon.service.GameMaster",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_3059181 { 
+   	label=code
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1172756777 { 
+   	label=dark
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AnimatedObject2120506165[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AnimatedObject</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   frameCounter: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   images: ArrayList&lt;Image&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   isRight: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   spriteNum: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(graphics: Graphics)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Coin2120506165[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Coin</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   collected: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ render(graphics: Graphics)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Digit2120506165[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Digit</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   currentDigit: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   images: ArrayList&lt;Image&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ render(graphics: Graphics)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DynamicObject2120506165[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DynamicObject</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ isAllowedSurface(x: int, y: int): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" ># move(direction: Direction, distance: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Enemy2120506165[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Enemy</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getDistance(x: int, y: int): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move(direction: Direction, distance: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Exit2120506165[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Exit</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   closed: boolean [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameFrame94531384[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameFrame</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   gameMaster: GameMaster [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ paint(graphics: Graphics)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameMaster2138410495[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameMaster</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   digit: Digit [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameObjects: List&lt;GameObject&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   map: Map [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- initGameObjects(map: char[][]): List&lt;GameObject&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderFrame(graphics: Graphics)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameObject2120506165[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameObject</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   image: Image [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   xPosition: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   yPosition: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ render(graphics: Graphics)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Map2120506165[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Map</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   coinCount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   map: char[][] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ coinCount(lines: List&lt;String&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >- containsExit(lines: List&lt;String&gt;): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- containsOnlyWalls(line: char[]): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- containsPlayer(lines: List&lt;String&gt;): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- createMap(lines: List&lt;String&gt;): char[][]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(graphics: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >- validate(lines: List&lt;String&gt;): Boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Player2120506165[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Player</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   coins: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   dead: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   won: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addCoin(coin: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dead()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move(direction: Direction)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ won()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+AnimatedObject2120506165 -> DynamicObject2120506165[arrowhead=none, arrowtail=empty, dir=both];
+DynamicObject2120506165 -> Enemy2120506165[arrowhead=none, arrowtail=empty, dir=both];
+DynamicObject2120506165 -> Player2120506165[arrowhead=none, arrowtail=empty, dir=both];
+GameFrame94531384 -> GameMaster2138410495[label="gameMaster
+[0..1]"];
+GameMaster2138410495 -> Digit2120506165[label="digit
+[0..1]"];
+GameMaster2138410495 -> GameObject2120506165[label="gameObjects
+[0..*]"];
+GameMaster2138410495 -> Map2120506165[label="map
+[0..1]"];
+GameMaster2138410495 -> Player2120506165[label="renderFrame() -> addCoin()"];
+GameObject2120506165 -> AnimatedObject2120506165[arrowhead=none, arrowtail=empty, dir=both];
+GameObject2120506165 -> Coin2120506165[arrowhead=none, arrowtail=empty, dir=both];
+GameObject2120506165 -> Digit2120506165[arrowhead=none, arrowtail=empty, dir=both];
+GameObject2120506165 -> Exit2120506165[arrowhead=none, arrowtail=empty, dir=both];
+    
+}
+@enduml
