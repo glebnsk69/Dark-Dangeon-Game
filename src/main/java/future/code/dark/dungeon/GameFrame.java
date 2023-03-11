@@ -29,7 +29,7 @@ public class GameFrame extends JPanel implements ActionListener {
         frame.pack();
         frame.setLocationRelativeTo(null);
         timer.start();
-        System.out.println("GameFrame(JFrame frame)");
+//        System.out.println("GameFrame(JFrame frame)");
         frame.addKeyListener(new MovementController(gameMaster.getPlayer()));
     }
 

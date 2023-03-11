@@ -37,9 +37,9 @@ public class GameMaster {
             this.gameObjects = initGameObjects(map.getMap());
             this.digit = new Digit(17,0,Configuration.DIGIT_PATH);
             this.digit.setDigit(0);
-            System.out.println(getMap().getWidth()*SPRITE_SIZE);
+//            System.out.println(getMap().getWidth()*SPRITE_SIZE);
             this.gameOwer = new ImageIcon(GAME_OVER).getImage().getScaledInstance(getMap().getWidth()*SPRITE_SIZE,getMap().getHeight()*SPRITE_SIZE,0);
-            this.gameWin = new ImageIcon(GAME_WIN).getImage().getScaledInstance(getMap().getWidth()*SPRITE_SIZE,getMap().getHeight()*SPRITE_SIZE,0);
+            this.gameWin = new ImageIcon(GAME_WIN  ).getImage().getScaledInstance(getMap().getWidth()*SPRITE_SIZE,getMap().getHeight()*SPRITE_SIZE,0);
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -65,12 +65,8 @@ public class GameMaster {
         return gameObjects;
     }
 
-    public void renderFrame(Graphics graphics) {
 
-        if(getPlayer().getXPosition()==getExit().getXPosition() && getPlayer().getYPosition()==getExit().getYPosition()) {
-            graphics.drawImage(gameWin, 0, 64, null);
-            return;
-        }
+    public void renderFrame(Graphics graphics) {
 
         getMap().render(graphics);
         graphics.setColor(Color.WHITE);
@@ -82,9 +78,11 @@ public class GameMaster {
  *      отображение врагов
 */
         getEnemies().forEach(gameObject -> {
+            if(gameObject.equels(getPlayer())) getPlayer().dead();
             gameObject.isRight = gameObject.getXPosition()> getPlayer().getXPosition();
             gameObject.render(graphics);
-            if(gameObject.frameCounter%30==0) {  // движение врагов
+
+            if(gameObject.frameCounter%130==0) {  // движение врагов
                 if (gameObject.getXPosition() > getPlayer().getXPosition())
                     gameObject.move(DynamicObject.Direction.LEFT, 1);
                 else gameObject.move(DynamicObject.Direction.RIGHT, 1);
@@ -93,30 +91,22 @@ public class GameMaster {
                 else gameObject.move(DynamicObject.Direction.DOWN, 1);
             }
         });
+
+        digit.setDigit(getPlayer().getCoins());
+        digit.render(graphics);
+
 /**
  *      отображение игрока
  */
         getPlayer().render(graphics);
-        digit.setDigit(getPlayer().getCoins());
-        digit.render(graphics);
-
-        if(getPlayer().isWon()){
-            this.getStaticObjects().forEach(gameObject -> {
-                if(gameObject instanceof Exit exit) {
-                    exit.setClosed(false);
-                }
-            });
-            if(getPlayer().getXPosition()==getExit().getXPosition() && getPlayer().getYPosition()==getExit().getYPosition()) {
-                graphics.drawImage(gameWin, 0, 64, null);
-            }
-// graphics.drawImage(image, xPosition * SPRITE_SIZE, yPosition  * SPRITE_SIZE, null);
-//            System.out.println("Victory!!!");
-            return;
+        if(getExit().equels(getPlayer()) && getExit().isOpen()) {
+            getPlayer().setCanMove(false);
+            getEnemies().forEach(enemy -> enemy.setDead(true));
+            graphics.drawImage(gameWin,0,0,null);
         }
 
         if(getPlayer().isDead()) {
-            graphics.drawOval(0,0,200,200);
-
+            graphics.drawOval(getPlayer().getXPosition(),getPlayer().getYPosition(),200,200);
           return;
         }
 
@@ -125,12 +115,8 @@ public class GameMaster {
                 if(c.getXPosition()==getPlayer().getXPosition() && c.getYPosition()==getPlayer().getYPosition()) {
                     getPlayer().addCoin(1);
                     c.setCollected(true);
-                    if(getPlayer().isWon())
-                        getExit().setClosed(false);
                 }
             }
-
-
         });
 
 

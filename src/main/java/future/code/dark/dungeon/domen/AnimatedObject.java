@@ -15,14 +15,18 @@ public abstract class AnimatedObject extends GameObject implements ActionListene
     int spriteNum=(int)(Math.random()*3f);
     public int frameCounter=0;
     public boolean isRight = true;
-
     public AnimatedObject(int xPosition, int yPosition, String imagePath) {
-        super(xPosition, yPosition, imagePath);
+        this(xPosition,yPosition,imagePath,"Unknown animated object");
+    }
+    public AnimatedObject(int xPosition, int yPosition, String imagePath,String name) {
+        super(xPosition, yPosition, imagePath,name);
         images.add(new ImageIcon(imagePath+"tile000.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
         images.add(new ImageIcon(imagePath+"tile001.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
         images.add(new ImageIcon(imagePath+"tile002.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
         images.add(new ImageIcon(imagePath+"tile003.png").getImage().getScaledInstance(SPRITE_SIZE,SPRITE_SIZE,0));
     }
+
+
 
     @Override
     public void render(Graphics graphics) {

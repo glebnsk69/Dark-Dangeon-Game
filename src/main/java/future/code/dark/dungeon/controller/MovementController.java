@@ -20,6 +20,7 @@ public class MovementController extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(!player.isCanMove()) return;
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W,KeyEvent.VK_UP -> player.move(UP);
             case KeyEvent.VK_S,KeyEvent.VK_DOWN -> player.move(DOWN);

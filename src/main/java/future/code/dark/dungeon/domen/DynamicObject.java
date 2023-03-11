@@ -6,7 +6,12 @@ import future.code.dark.dungeon.service.GameMaster;
 public abstract class DynamicObject extends AnimatedObject {
 
     public DynamicObject(int xPosition, int yPosition, String imagePath) {
-        super(xPosition, yPosition, imagePath);
+        this(xPosition, yPosition, imagePath, "Unknown Dinamic Object");
+    }
+
+    public DynamicObject(int xPosition, int yPosition, String imagePath, String name) {
+
+        super(xPosition, yPosition, imagePath, name);
     }
 
     public enum Direction {
@@ -28,15 +33,22 @@ public abstract class DynamicObject extends AnimatedObject {
             xPosition = tmpXPosition;
             yPosition = tmpYPosition;
         }
+        if (this instanceof Enemy enemy) {
+            if (enemy.equals(GameMaster.getInstance().getPlayer())) System.out.println("ПОПАЛСЯ!");
+        }
+
 
     }
 
     public Boolean isAllowedSurface(int x, int y) {
-        if(GameMaster.getInstance().getMap().getMap()[y][x] == Configuration.EXIT_CHARACTER)
-            if(GameMaster.getInstance().getExit().isClosed()) return false;
+        if (GameMaster.getInstance().getMap().getMap()[y][x] == Configuration.EXIT_CHARACTER) {
+            System.out.println("check exit " + GameMaster.getInstance().getPlayer());
+            if (!GameMaster.getInstance().getExit().isOpen()) {
+                System.out.println("ВЫХОДА НЕТ!!! "+GameMaster.getInstance().getExit()+":"+GameMaster.getInstance().getPlayer());
+                return false;
+            }
+        }
         return GameMaster.getInstance().getMap().getMap()[y][x] != Configuration.WALL_CHARACTER;
     }
-
-
 
 }
