@@ -28,6 +28,7 @@ public class MovementController extends KeyAdapter {
             case KeyEvent.VK_D,KeyEvent.VK_RIGHT -> {player.move(RIGHT);player.isRight=true;}
 //            case KeyEvent.VK_SPACE -> {player.newGame();}
         }
+        if(e.getKeyCode()==KeyEvent.VK_ESCAPE) System.out.println("Resrart game");
     }
 
     @Override

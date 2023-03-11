@@ -24,6 +24,7 @@ String PLAYER_SPRITE = "src/main/resources/assets/hero/";
     String COIN_SPRITE = "src/main/resources/assets/land/collectible.png";
     String GAME_OVER = "src/main/resources/assets/game_over.png";
     String GAME_WIN = "src/main/resources/assets/youwin.png";
-    int MAX_COIN = 2;
+    int MAX_COIN = 9;
+    int ENEMY_SPEED = 30;
 
 }

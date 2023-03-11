@@ -5,6 +5,7 @@ import future.code.dark.dungeon.service.GameMaster;
 
 public abstract class DynamicObject extends AnimatedObject {
 
+
     public DynamicObject(int xPosition, int yPosition, String imagePath) {
         this(xPosition, yPosition, imagePath, "Unknown Dinamic Object");
     }
@@ -33,9 +34,7 @@ public abstract class DynamicObject extends AnimatedObject {
             xPosition = tmpXPosition;
             yPosition = tmpYPosition;
         }
-        if (this instanceof Enemy enemy) {
-            if (enemy.equals(GameMaster.getInstance().getPlayer())) System.out.println("ПОПАЛСЯ!");
-        }
+
 
 
     }
@@ -44,7 +43,6 @@ public abstract class DynamicObject extends AnimatedObject {
         if (GameMaster.getInstance().getMap().getMap()[y][x] == Configuration.EXIT_CHARACTER) {
             System.out.println("check exit " + GameMaster.getInstance().getPlayer());
             if (!GameMaster.getInstance().getExit().isOpen()) {
-                System.out.println("ВЫХОДА НЕТ!!! "+GameMaster.getInstance().getExit()+":"+GameMaster.getInstance().getPlayer());
                 return false;
             }
         }

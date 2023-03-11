@@ -25,10 +25,9 @@ public class Exit extends GameObject{
 
        @Override
     public void render(Graphics graphics) {
-        super.render(graphics);
-        if(!this.open){
-            graphics.drawImage(imageClose, xPosition * SPRITE_SIZE, yPosition  * SPRITE_SIZE, null);
+           if(this.open) super.render(graphics);
+           else graphics.drawImage(imageClose, xPosition * SPRITE_SIZE, yPosition  * SPRITE_SIZE, null);
         }
 
-    }
+
 }

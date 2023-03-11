@@ -6,8 +6,7 @@ import future.code.dark.dungeon.service.GameMaster;
 public class Player extends DynamicObject {
     private static final int stepSize = 1;
     private int coins=0;
-    private boolean won=false;
-    private boolean dead=false;
+    private boolean won = false;
     private boolean canMove=true;
 
     public boolean isCanMove() {
@@ -18,15 +17,6 @@ public class Player extends DynamicObject {
         this.canMove = canMove;
     }
 
- //   private boolean allowExit = false;
-
- //   public boolean isAllowExit() {
- //       return allowExit;
- //   }
-
-//    public void setAllowExit(boolean allowExit) {
-//        this.allowExit = allowExit;
-//    }
 
     public Player(int xPosition, int yPosition) {
         super(xPosition, yPosition, Configuration.PLAYER_SPRITE,"Player");
@@ -39,7 +29,7 @@ public class Player extends DynamicObject {
 
     @Override
     public String toString() {
-        return "Player{"+getName()+"[" + xPosition + ":" + yPosition + "]}"+" coins = "+coins+won+","+dead+","+canMove;
+        return "Player{"+getName()+"[" + xPosition + ":" + yPosition + "]}";
     }
 
     public int getCoins(){
@@ -53,16 +43,19 @@ public class Player extends DynamicObject {
     }
 
     public boolean isWon(){ return won;}
-    public void won(){
-        won = true;
-        setCanMove(false);
-        System.out.println("ПОБЕДА!");
+
+    public void setWon(boolean won) {
+        this.won = won;
     }
-    public boolean isDead(){
-        return dead;}
+
+    @Override
+    public void setDead(boolean dead) {
+        super.setDead(dead);
+    }
+
     public void dead() {
         setCanMove(false);
-        dead = true;
+        setDead(true);
     }
 
 

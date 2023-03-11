@@ -20,9 +20,9 @@ public class GameMaster {
 
     private final Map map;
     private final List<GameObject> gameObjects;
-    private Digit digit;
-    private Image gameOwer;
-    private Image gameWin;
+    private final Digit digit;
+    private final Image gameOwer;
+    private final Image gameWin;
 
     public static synchronized GameMaster getInstance() {
         if (instance == null) {
@@ -74,15 +74,13 @@ public class GameMaster {
         graphics.drawString("Coins:"+getPlayer().getCoins()+"/9",10,40);
 
         getStaticObjects().forEach(gameObject -> gameObject.render(graphics));  // отображение статических объектов
-/**
- *      отображение врагов
-*/
+
         getEnemies().forEach(gameObject -> {
             if(gameObject.equels(getPlayer())) getPlayer().dead();
             gameObject.isRight = gameObject.getXPosition()> getPlayer().getXPosition();
             gameObject.render(graphics);
 
-            if(gameObject.frameCounter%130==0) {  // движение врагов
+            if(gameObject.frameCounter%ENEMY_SPEED==0) {  // движение врагов
                 if (gameObject.getXPosition() > getPlayer().getXPosition())
                     gameObject.move(DynamicObject.Direction.LEFT, 1);
                 else gameObject.move(DynamicObject.Direction.RIGHT, 1);
@@ -95,19 +93,11 @@ public class GameMaster {
         digit.setDigit(getPlayer().getCoins());
         digit.render(graphics);
 
-/**
- *      отображение игрока
- */
         getPlayer().render(graphics);
         if(getExit().equels(getPlayer()) && getExit().isOpen()) {
             getPlayer().setCanMove(false);
             getEnemies().forEach(enemy -> enemy.setDead(true));
             graphics.drawImage(gameWin,0,0,null);
-        }
-
-        if(getPlayer().isDead()) {
-            graphics.drawOval(getPlayer().getXPosition(),getPlayer().getYPosition(),200,200);
-          return;
         }
 
         this.getStaticObjects().forEach(gameObjects-> {
@@ -118,6 +108,8 @@ public class GameMaster {
                 }
             }
         });
+
+        if(getPlayer().isDead()) graphics.drawImage(gameOwer,0,0,null);
 
 
     }
@@ -130,11 +122,10 @@ public class GameMaster {
     }
 
     public Exit getExit() {
-        Exit tmp = (Exit) gameObjects.stream()
+        return (Exit) gameObjects.stream()
                 .filter(gameObject -> gameObject instanceof Exit)
                 .findFirst()
                 .orElseThrow();
-        return tmp;
     }
 
     private List<GameObject> getStaticObjects() {
@@ -149,13 +140,6 @@ public class GameMaster {
                 .map(gameObject -> (Enemy) gameObject)
                 .collect(Collectors.toList());
     }
-    private List<Coin> getCoins (){
-        return gameObjects.stream()
-                .filter(gameObject -> gameObject instanceof Coin)
-                .map(gameObject -> (Coin)gameObject)
-                .collect(Collectors.toList());
-    }
-
     public Map getMap() {
         return map;
     }
